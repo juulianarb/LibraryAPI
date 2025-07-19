@@ -1,0 +1,23 @@
+# Rodar container postgre na versão 17.5
+docker run --name librarydb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=library -d postgres:17.5
+
+# Rodar pgadmin 4 na versão 9.5.0
+docker run --name pgadmin4 -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin -d dpage/pgadmin4:9.5.0
+
+# Mostrar status dos containers
+docker ps
+# Mostrar containers parados
+docker ps -a
+
+# Parar containers
+docker stop (nome ou id do container)
+
+# Iniciar container
+docker start
+
+# Criando a network entre postgres e pgadmin
+docker network create library-network
+docker run --name librarydb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=library --network library-network postgres:17.5
+
+# Comando para localizar portas em uso
+netstat -aof | findstr 5432
