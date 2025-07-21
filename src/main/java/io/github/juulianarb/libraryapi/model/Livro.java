@@ -31,10 +31,9 @@ public class Livro {
     private GeneroLivro genero;
 
     @Column(name = "preco", precision = 18, scale = 2)
-    private Double preco;
-    // private BigDecimal preco;
+    private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "id_autor")
-    private Autor Autor;
+    private Autor autor;
 }
